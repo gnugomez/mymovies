@@ -1,0 +1,2 @@
+INSERT INTO users (username, password, user_role, first_name, last_name ) VALUES ('user', '$2a$10$3RKwguc/VPteZtdb0Bt3F.rAlDAyOHt2ouAT9wYzKH2ywXFGAuWe6', 'USER', 'Bob', 'Doe');
+INSERT INTO users (username, password, user_role, first_name, last_name) VALUES ('admin', '$2a$10$3RKwguc/VPteZtdb0Bt3F.rAlDAyOHt2ouAT9wYzKH2ywXFGAuWe6', 'ADMIN', 'Alice', 'Doe');
