@@ -22,7 +22,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
 

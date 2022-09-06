@@ -50,17 +50,17 @@ public class UsernamePasswordPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountExpired;
+        return !this.accountExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountLocked;
+        return !this.accountLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsExpired;
+        return !this.credentialsExpired;
     }
 
     @Override
