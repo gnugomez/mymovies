@@ -1,5 +1,6 @@
 package com.gnugomez.mymovies.app.movie.infrastructure;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -8,13 +9,13 @@ import java.util.Optional;
 
 @Service
 public class MoviesDataRepository {
-    WebClient client;
-    String defaultLanguage = "en-US";
+    private final WebClient client;
+    private final String defaultLanguage = "en-US";
 
-    public MoviesDataRepository() {
+    public MoviesDataRepository(@Value("${tmdb.readToken}") String readToken) {
         this.client = WebClient.builder()
                 .baseUrl("https://api.themoviedb.org/3")
-                .defaultHeader("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNWI3ZTg5ODc0ZWQ4NTliYzIxNmQ4YTY0ZDEzNDFhOCIsInN1YiI6IjVmZTExNjE0MmIyMTA4MDAzZmU3OTZlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VDBndA0b162M9Z4_7gPWs_8FLdBfJq7jkDMGTFJFmH8")
+                .defaultHeader("Authorization", "Bearer " + readToken)
                 .defaultHeader("Content-Type", "application/json;charset=utf-8")
                 .build();
     }

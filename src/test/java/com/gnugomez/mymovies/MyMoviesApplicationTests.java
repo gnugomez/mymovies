@@ -21,14 +21,4 @@ class MyMoviesApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    public void loginWithValidUserThenAuthenticated() throws Exception {
-        SecurityMockMvcRequestBuilders.FormLoginRequestBuilder login = formLogin()
-                .user("user")
-                .password("user");
-
-        mockMvc.perform(login)
-                .andExpect(authenticated().withUsername("user"));
-    }
-
 }
