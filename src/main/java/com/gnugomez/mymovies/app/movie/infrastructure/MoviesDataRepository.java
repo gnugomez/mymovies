@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class TMDBDataSource {
+public class MoviesDataRepository {
     WebClient client;
     String defaultLanguage = "en-US";
 
-    public TMDBDataSource() {
+    public MoviesDataRepository() {
         this.client = WebClient.builder()
                 .baseUrl("https://api.themoviedb.org/3")
                 .defaultHeader("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNWI3ZTg5ODc0ZWQ4NTliYzIxNmQ4YTY0ZDEzNDFhOCIsInN1YiI6IjVmZTExNjE0MmIyMTA4MDAzZmU3OTZlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VDBndA0b162M9Z4_7gPWs_8FLdBfJq7jkDMGTFJFmH8")

@@ -19,9 +19,6 @@ public class AuthUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername");
-        System.out.println(username);
-        System.out.println(userRepository.findByUsername(username).get());
         return userRepository.findByUsername(username)
                 .map(User::toUsernamePasswordPrincipal)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));

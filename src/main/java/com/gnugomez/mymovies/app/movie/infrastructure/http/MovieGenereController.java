@@ -1,9 +1,8 @@
 package com.gnugomez.mymovies.app.movie.infrastructure.http;
 
-import com.gnugomez.mymovies.app.movie.infrastructure.TMDBDataSource;
+import com.gnugomez.mymovies.app.movie.infrastructure.MoviesDataRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +13,12 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/genere/movie")
-public class movieGenereController {
-    TMDBDataSource tmdbDataSource;
+public class MovieGenereController {
+    MoviesDataRepository moviesDataRepository;
 
     @GetMapping("/list")
     public Map popular(@PathParam("language") Optional<String> language) {
-        return tmdbDataSource.getMovieGenres(language);
+        return moviesDataRepository.getMovieGenres(language);
     }
 
 }
