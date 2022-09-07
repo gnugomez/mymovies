@@ -2,9 +2,12 @@ package com.gnugomez.mymovies.app.movie.infrastructure.providers;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,31 +25,31 @@ public class MoviesDataRepository {
                 .build();
     }
 
-    public Map getPopularMovies(Optional<String> language) {
+    public Mono<HashMap<String, Object>> getPopularMovies(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/popular")
                         .queryParam("language", language.orElse(this.defaultLanguage))
                         .build())
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get a list of oficial movie genres
-    public Map getMovieGenres(Optional<String> language) {
+    public Mono<HashMap<String, Object>> getMovieGenres(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/genre/movie/list")
                         .queryParam("language", language.orElse(this.defaultLanguage))
                         .build())
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get the top rated movies on TMDB
-    public Map getTopRatedMovies(Optional<String> language) {
+    public Mono<HashMap<String, Object>> getTopRatedMovies(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/top_rated")
@@ -54,12 +57,12 @@ public class MoviesDataRepository {
                         .build()
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get specific movie details
-    public Map getMovieDetails(Long movieId, Optional<String> language) {
+    public Mono<HashMap<String, Object>> getMovieDetails(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}")
@@ -67,48 +70,48 @@ public class MoviesDataRepository {
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get specific movie credits
-    public Map getMovieCredits(Long movieId) {
+    public Mono<HashMap<String, Object>> getMovieCredits(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/credits")
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get specific movie images
-    public Map getMovieImages(Long movieId) {
+    public Mono<HashMap<String, Object>> getMovieImages(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/images")
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get specific movie keywords
-    public Map getMovieKeywords(Long movieId) {
+    public Mono<HashMap<String, Object>> getMovieKeywords(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/keywords")
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get specific movie recommendations
-    public Map getMovieRecommendations(Long movieId, Optional<String> language) {
+    public Mono<HashMap<String, Object>> getMovieRecommendations(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/recommendations")
@@ -116,12 +119,12 @@ public class MoviesDataRepository {
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
     // Get Specific movie similar movies
-    public Map getMovieSimilarMovies(Long movieId, Optional<String> language) {
+    public Mono<HashMap<String, Object>> getMovieSimilarMovies(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/similar")
@@ -129,8 +132,8 @@ public class MoviesDataRepository {
                         .build(movieId)
                 )
                 .retrieve()
-                .bodyToMono(Map.class)
-                .block();
+                .bodyToMono(new ParameterizedTypeReference<>() {
+                });
     }
 
 }
