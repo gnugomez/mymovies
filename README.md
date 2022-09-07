@@ -1,4 +1,5 @@
 # MyMovies API
+![Tests](https://github.com/gnugomez/mymovies/actions/workflows/gradle.yml/badge.svg)
 
 This is a simple spring project that uses the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) to get information about movies and adds other relevant information to it.
 ## How to run
