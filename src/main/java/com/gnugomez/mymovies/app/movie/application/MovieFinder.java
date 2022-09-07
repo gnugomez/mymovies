@@ -8,8 +8,9 @@ import com.gnugomez.mymovies.app.user.infrastructure.auth.UsernamePasswordPrinci
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 
 @Service
@@ -20,18 +21,23 @@ public class MovieFinder {
 
     MoviesDataRepository moviesDataRepository;
 
-    public Map find(Long movieId, Optional<String> language) {
+    public Mono<HashMap<String, Object>> find(Long movieId, Optional<String> language) {
         UsernamePasswordPrincipal loggedUser = (UsernamePasswordPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Map movie = moviesDataRepository.getMovieDetails(movieId, language);
+        Mono<HashMap<String, Object>> movie = moviesDataRepository.getMovieDetails(movieId, language);
 
-        MovieUserSpecificData movieUserSpecificData = movieUserSpecificDataRepository
-                .findById(new MovieUserSpecificDataId(loggedUser.getId(), movieId)).orElse(new MovieUserSpecificData());
+        Mono<MovieUserSpecificData> movieUserSpecificData = Mono.fromCallable(() -> movieUserSpecificDataRepository
+                .findById(new MovieUserSpecificDataId(loggedUser.getId(), movieId)).orElse(new MovieUserSpecificData())
+        );
 
-        movie.put("favorite", movieUserSpecificData.getFavorite());
-        movie.put("rating", movieUserSpecificData.getRating());
-        movie.put("notes", movieUserSpecificData.getNotes());
-
-        return movie;
+        return Mono.zip(movie, movieUserSpecificData)
+                .map(tuple -> {
+                    HashMap<String, Object> m = tuple.getT1();
+                    MovieUserSpecificData specificData = tuple.getT2();
+                    m.put("rating", specificData.getRating());
+                    m.put("notes", specificData.getNotes());
+                    m.put("favorite", specificData.getFavorite() != null ? specificData.getFavorite() : false);
+                    return m;
+                });
     }
 }
