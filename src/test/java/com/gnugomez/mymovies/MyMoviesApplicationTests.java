@@ -17,8 +17,4 @@ class MyMoviesApplicationTests {
     @Autowired
     MockMvc mockMvc;
 
-    @Test
-    void contextLoads() {
-    }
-
 }
