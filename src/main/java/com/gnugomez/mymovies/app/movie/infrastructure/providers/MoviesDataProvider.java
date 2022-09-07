@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @Service
 @Getter
-public class MoviesDataRepository {
+public class MoviesDataProvider {
     private final WebClient client;
     private final String defaultLanguage = "en-US";
 
-    public MoviesDataRepository(@Value("${tmdb.readToken}") String readToken) {
+    public MoviesDataProvider(@Value("${tmdb.readToken}") String readToken) {
         this.client = WebClient.builder()
                 .baseUrl("https://api.themoviedb.org/3")
                 .defaultHeader("Authorization", "Bearer " + readToken)

@@ -1,6 +1,6 @@
 package com.gnugomez.mymovies.app.user.domain;
 
-import com.gnugomez.mymovies.app.user.infrastructure.auth.UsernamePasswordPrincipal;
+import com.gnugomez.mymovies.app.user.domain.auth.UsernamePasswordPrincipal;
 import lombok.*;
 
 import javax.persistence.*;

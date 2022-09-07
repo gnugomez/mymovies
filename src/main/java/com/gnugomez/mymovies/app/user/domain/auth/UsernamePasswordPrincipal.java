@@ -1,4 +1,4 @@
-package com.gnugomez.mymovies.app.user.infrastructure.auth;
+package com.gnugomez.mymovies.app.user.domain.auth;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

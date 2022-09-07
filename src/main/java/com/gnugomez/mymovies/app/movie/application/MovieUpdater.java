@@ -3,7 +3,7 @@ package com.gnugomez.mymovies.app.movie.application;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificData;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificDataId;
 import com.gnugomez.mymovies.app.movie.infrastructure.persistence.MovieUserSpecificDataRepository;
-import com.gnugomez.mymovies.app.user.infrastructure.auth.UsernamePasswordPrincipal;
+import com.gnugomez.mymovies.app.user.domain.auth.UsernamePasswordPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.gnugomez.mymovies.app.user.infrastructure.auth;
+package com.gnugomez.mymovies.app.user.application.auth;
 
 import com.gnugomez.mymovies.app.user.domain.User;
 import com.gnugomez.mymovies.app.user.infrastructure.persistence.UserRepository;
