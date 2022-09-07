@@ -45,7 +45,6 @@ class MovieControllerTest {
 
     @BeforeEach
     void setUp() {
-        when(moviesDataProvider.getMovieGenres(any())).thenReturn(Mono.just(new HashMap<>()));
         when(moviesDataProvider.getPopularMovies(any())).thenReturn(Mono.just(new HashMap<>()));
         when(moviesDataProvider.getTopRatedMovies(any())).thenReturn(Mono.just(new HashMap<>()));
         when(moviesDataProvider.getMovieDetails(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
