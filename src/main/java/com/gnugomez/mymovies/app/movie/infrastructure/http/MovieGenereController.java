@@ -1,6 +1,6 @@
 package com.gnugomez.mymovies.app.movie.infrastructure.http;
 
-import com.gnugomez.mymovies.app.movie.infrastructure.MoviesDataRepository;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
