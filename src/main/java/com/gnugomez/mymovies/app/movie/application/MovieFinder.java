@@ -28,7 +28,7 @@ public class MovieFinder {
         MovieUserSpecificData movieUserSpecificData = movieUserSpecificDataRepository
                 .findById(new MovieUserSpecificDataId(loggedUser.getId(), movieId)).orElse(new MovieUserSpecificData());
 
-        movie.put("favorite", movieUserSpecificData.isFavorite());
+        movie.put("favorite", movieUserSpecificData.getFavorite());
         movie.put("rating", movieUserSpecificData.getRating());
         movie.put("notes", movieUserSpecificData.getNotes());
 

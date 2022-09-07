@@ -12,13 +12,26 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class MovieUpdater {
 
-    MovieUserSpecificDataRepository movieUserSpecificDataRepository;
+    MovieUserSpecificDataRepository newMovieUserSpecificDataRepository;
 
-    public void update(Long movieId, MovieUserSpecificData movieUserSpecificData) {
+    public void update(Long movieId, MovieUserSpecificData newMovieUserSpecificData) {
         UsernamePasswordPrincipal loggedUser = (UsernamePasswordPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        MovieUserSpecificData movieUserSpecificData = newMovieUserSpecificDataRepository
+                .findById(new MovieUserSpecificDataId(loggedUser.getId(), movieId)).orElse(new MovieUserSpecificData());
 
         movieUserSpecificData.setId(new MovieUserSpecificDataId(loggedUser.getId(), movieId));
 
-        movieUserSpecificDataRepository.save(movieUserSpecificData);
+        if (newMovieUserSpecificData.getRating() != null) {
+            movieUserSpecificData.setRating(newMovieUserSpecificData.getRating());
+        }
+        if (newMovieUserSpecificData.getNotes() != null) {
+            movieUserSpecificData.setNotes(newMovieUserSpecificData.getNotes());
+        }
+        if (newMovieUserSpecificData.getFavorite() != null) {
+            movieUserSpecificData.setFavorite(newMovieUserSpecificData.getFavorite());
+        }
+
+        newMovieUserSpecificDataRepository.save(movieUserSpecificData);
     }
 }
