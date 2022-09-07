@@ -1,4 +1,4 @@
-package com.gnugomez.mymovies.app.user.infrastructure;
+package com.gnugomez.mymovies.app.user.infrastructure.persistence;
 
 import com.gnugomez.mymovies.app.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

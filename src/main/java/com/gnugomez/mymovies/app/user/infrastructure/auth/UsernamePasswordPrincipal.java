@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-@RequiredArgsConstructor
+@Getter
+@AllArgsConstructor
 public class UsernamePasswordPrincipal implements UserDetails {
 
     private Long id;

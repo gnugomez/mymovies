@@ -1,7 +1,7 @@
 package com.gnugomez.mymovies.app.user.infrastructure.auth;
 
 import com.gnugomez.mymovies.app.user.domain.User;
-import com.gnugomez.mymovies.app.user.infrastructure.UserRepository;
+import com.gnugomez.mymovies.app.user.infrastructure.persistence.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

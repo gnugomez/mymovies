@@ -44,7 +44,7 @@ public class User {
 
 
     public UsernamePasswordPrincipal toUsernamePasswordPrincipal() {
-        return new UsernamePasswordPrincipal(username, password, firstName, lastName, userRole, accountEnabled, accountExpired, accountLocked, credentialsExpired);
+        return new UsernamePasswordPrincipal(id, username, password, firstName, lastName, userRole, accountEnabled, accountExpired, accountLocked, credentialsExpired);
     }
 
     @Override

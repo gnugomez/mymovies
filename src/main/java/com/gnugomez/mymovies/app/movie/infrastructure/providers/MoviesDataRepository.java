@@ -1,5 +1,6 @@
-package com.gnugomez.mymovies.app.movie.infrastructure;
+package com.gnugomez.mymovies.app.movie.infrastructure.providers;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Getter
 public class MoviesDataRepository {
     private final WebClient client;
     private final String defaultLanguage = "en-US";
@@ -57,7 +59,7 @@ public class MoviesDataRepository {
     }
 
     // Get specific movie details
-    public Map getMovieDetails(int movieId, Optional<String> language) {
+    public Map getMovieDetails(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}")
@@ -70,7 +72,7 @@ public class MoviesDataRepository {
     }
 
     // Get specific movie credits
-    public Map getMovieCredits(int movieId) {
+    public Map getMovieCredits(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/credits")
@@ -80,9 +82,9 @@ public class MoviesDataRepository {
                 .bodyToMono(Map.class)
                 .block();
     }
-    
+
     // Get specific movie images
-    public Map getMovieImages(int movieId) {
+    public Map getMovieImages(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/images")
@@ -92,9 +94,9 @@ public class MoviesDataRepository {
                 .bodyToMono(Map.class)
                 .block();
     }
-    
+
     // Get specific movie keywords
-    public Map getMovieKeywords(int movieId) {
+    public Map getMovieKeywords(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/keywords")
@@ -104,9 +106,9 @@ public class MoviesDataRepository {
                 .bodyToMono(Map.class)
                 .block();
     }
-    
+
     // Get specific movie recommendations
-    public Map getMovieRecommendations(int movieId, Optional<String> language) {
+    public Map getMovieRecommendations(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/recommendations")
@@ -117,9 +119,9 @@ public class MoviesDataRepository {
                 .bodyToMono(Map.class)
                 .block();
     }
-    
+
     // Get Specific movie similar movies
-    public Map getMovieSimilarMovies(int movieId, Optional<String> language) {
+    public Map getMovieSimilarMovies(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/movie/{movieId}/similar")
@@ -130,5 +132,5 @@ public class MoviesDataRepository {
                 .bodyToMono(Map.class)
                 .block();
     }
-    
+
 }
