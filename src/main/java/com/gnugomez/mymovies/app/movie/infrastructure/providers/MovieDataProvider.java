@@ -8,16 +8,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
 @Getter
-public class MoviesDataProvider {
+public class MovieDataProvider {
     private final WebClient client;
     private final String defaultLanguage = "en-US";
 
-    public MoviesDataProvider(@Value("${tmdb.readToken}") String readToken) {
+    public MovieDataProvider(@Value("${tmdb.readToken}") String readToken) {
         this.client = WebClient.builder()
                 .baseUrl("https://api.themoviedb.org/3")
                 .defaultHeader("Authorization", "Bearer " + readToken)

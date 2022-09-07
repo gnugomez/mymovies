@@ -3,7 +3,7 @@ package com.gnugomez.mymovies.app.movie.infrastructure.http;
 import com.gnugomez.mymovies.app.movie.application.MovieFinder;
 import com.gnugomez.mymovies.app.movie.application.MovieUpdater;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificData;
-import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataProvider;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MovieDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/movies")
 public class MovieController {
-    MoviesDataProvider moviesDataProvider;
+    MovieDataProvider movieDataProvider;
 
     MovieFinder movieFinder;
 
@@ -26,12 +26,12 @@ public class MovieController {
 
     @GetMapping("/popular")
     public Mono<HashMap<String, Object>> popular(@PathParam("language") Optional<String> language) {
-        return moviesDataProvider.getPopularMovies(language);
+        return movieDataProvider.getPopularMovies(language);
     }
 
     @GetMapping("/top_rated")
     public Mono<HashMap<String, Object>> topRated(@PathParam("language") Optional<String> language) {
-        return moviesDataProvider.getTopRatedMovies(language);
+        return movieDataProvider.getTopRatedMovies(language);
     }
 
     @GetMapping("/{movieId}")
@@ -41,27 +41,27 @@ public class MovieController {
 
     @GetMapping("/{movieId}/credits")
     public Mono<HashMap<String, Object>> movieCredits(@PathVariable("movieId") Long movieId) {
-        return moviesDataProvider.getMovieCredits(movieId);
+        return movieDataProvider.getMovieCredits(movieId);
     }
 
     @GetMapping("/{movieId}/images")
     public Mono<HashMap<String, Object>> movieImages(@PathVariable("movieId") Long movieId) {
-        return moviesDataProvider.getMovieImages(movieId);
+        return movieDataProvider.getMovieImages(movieId);
     }
 
     @GetMapping("/{movieId}/keywords")
     public Mono<HashMap<String, Object>> movieKeywords(@PathVariable("movieId") Long movieId) {
-        return moviesDataProvider.getMovieKeywords(movieId);
+        return movieDataProvider.getMovieKeywords(movieId);
     }
 
     @GetMapping("/{movieId}/recommendations")
     public Mono<HashMap<String, Object>> movieRecommendations(@PathVariable("movieId") Long movieId, @PathParam("language") Optional<String> language) {
-        return moviesDataProvider.getMovieRecommendations(movieId, language);
+        return movieDataProvider.getMovieRecommendations(movieId, language);
     }
 
     @GetMapping("/{movieId}/similar")
     public Mono<HashMap<String, Object>> movieSimilar(@PathVariable("movieId") Long movieId, @PathParam("language") Optional<String> language) {
-        return moviesDataProvider.getMovieSimilarMovies(movieId, language);
+        return movieDataProvider.getMovieSimilarMovies(movieId, language);
     }
 
     @PatchMapping("/{movieId}")

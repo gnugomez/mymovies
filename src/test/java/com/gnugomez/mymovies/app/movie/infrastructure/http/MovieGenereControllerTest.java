@@ -1,6 +1,6 @@
 package com.gnugomez.mymovies.app.movie.infrastructure.http;
 
-import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataProvider;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MovieDataProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
@@ -27,14 +26,14 @@ class MovieGenereControllerTest {
     MockMvc mockMvc;
 
     @MockBean
-    MoviesDataProvider moviesDataProvider;
+    MovieDataProvider movieDataProvider;
 
     String username = "user";
     String password = "user";
 
     @BeforeEach
     void setUp() {
-        when(moviesDataProvider.getMovieGenres(any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieGenres(any())).thenReturn(Mono.just(new HashMap<>()));
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.gnugomez.mymovies.app.movie.infrastructure.http;
 
-import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataProvider;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MovieDataProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +15,11 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/genere/movie")
 public class MovieGenereController {
-    MoviesDataProvider moviesDataProvider;
+    MovieDataProvider movieDataProvider;
 
     @GetMapping("/list")
     public Mono<HashMap<String, Object>> popular(@PathParam("language") Optional<String> language) {
-        return moviesDataProvider.getMovieGenres(language);
+        return movieDataProvider.getMovieGenres(language);
     }
 
 }

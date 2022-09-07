@@ -3,7 +3,7 @@ package com.gnugomez.mymovies.app.movie.application;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificData;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificDataId;
 import com.gnugomez.mymovies.app.movie.infrastructure.persistence.MovieUserSpecificDataRepository;
-import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataProvider;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MovieDataProvider;
 import com.gnugomez.mymovies.app.user.domain.auth.UsernamePasswordPrincipal;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,12 +19,12 @@ public class MovieFinder {
 
     MovieUserSpecificDataRepository movieUserSpecificDataRepository;
 
-    MoviesDataProvider moviesDataProvider;
+    MovieDataProvider movieDataProvider;
 
     public Mono<HashMap<String, Object>> find(Long movieId, Optional<String> language) {
         UsernamePasswordPrincipal loggedUser = (UsernamePasswordPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Mono<HashMap<String, Object>> movie = moviesDataProvider.getMovieDetails(movieId, language);
+        Mono<HashMap<String, Object>> movie = movieDataProvider.getMovieDetails(movieId, language);
 
         Mono<MovieUserSpecificData> movieUserSpecificData = Mono.fromCallable(() -> movieUserSpecificDataRepository
                 .findById(new MovieUserSpecificDataId(loggedUser.getId(), movieId)).orElse(new MovieUserSpecificData())

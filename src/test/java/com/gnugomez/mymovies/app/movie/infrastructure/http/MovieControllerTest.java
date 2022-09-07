@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificData;
 import com.gnugomez.mymovies.app.movie.domain.MovieUserSpecificDataId;
 import com.gnugomez.mymovies.app.movie.infrastructure.persistence.MovieUserSpecificDataRepository;
-import com.gnugomez.mymovies.app.movie.infrastructure.providers.MoviesDataProvider;
+import com.gnugomez.mymovies.app.movie.infrastructure.providers.MovieDataProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +38,21 @@ class MovieControllerTest {
     MovieUserSpecificDataRepository movieUserSpecificDataRepository;
 
     @MockBean
-    MoviesDataProvider moviesDataProvider;
+    MovieDataProvider movieDataProvider;
 
     String username = "user";
     String password = "user";
 
     @BeforeEach
     void setUp() {
-        when(moviesDataProvider.getPopularMovies(any())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getTopRatedMovies(any())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieDetails(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieCredits(anyLong())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieImages(anyLong())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieCredits(anyLong())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieRecommendations(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
-        when(moviesDataProvider.getMovieSimilarMovies(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getPopularMovies(any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getTopRatedMovies(any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieDetails(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieCredits(anyLong())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieImages(anyLong())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieCredits(anyLong())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieRecommendations(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
+        when(movieDataProvider.getMovieSimilarMovies(anyLong(), any())).thenReturn(Mono.just(new HashMap<>()));
     }
 
     @Test
