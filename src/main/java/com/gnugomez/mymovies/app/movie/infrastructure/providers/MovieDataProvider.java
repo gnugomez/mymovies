@@ -2,6 +2,7 @@ package com.gnugomez.mymovies.app.movie.infrastructure.providers;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,6 +25,7 @@ public class MovieDataProvider {
                 .build();
     }
 
+    @Cacheable("moviePopular")
     public Mono<HashMap<String, Object>> getPopularMovies(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -35,7 +37,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get a list of oficial movie genres
+    @Cacheable("movieGeneres")
     public Mono<HashMap<String, Object>> getMovieGenres(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -47,7 +49,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get the top rated movies on TMDB
+    @Cacheable("movieTopRated")
     public Mono<HashMap<String, Object>> getTopRatedMovies(Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -60,7 +62,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get specific movie details
+    @Cacheable("movieDetails")
     public Mono<HashMap<String, Object>> getMovieDetails(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -73,7 +75,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get specific movie credits
+    @Cacheable("movieCredits")
     public Mono<HashMap<String, Object>> getMovieCredits(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -85,7 +87,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get specific movie images
+    @Cacheable("movieImages")
     public Mono<HashMap<String, Object>> getMovieImages(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -97,7 +99,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get specific movie keywords
+    @Cacheable("movieVideos")
     public Mono<HashMap<String, Object>> getMovieKeywords(Long movieId) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -109,7 +111,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get specific movie recommendations
+    @Cacheable("movieRecommendations")
     public Mono<HashMap<String, Object>> getMovieRecommendations(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
@@ -122,7 +124,7 @@ public class MovieDataProvider {
                 });
     }
 
-    // Get Specific movie similar movies
+    @Cacheable("movieSimilar")
     public Mono<HashMap<String, Object>> getMovieSimilarMovies(Long movieId, Optional<String> language) {
         return client.get()
                 .uri(uriBuilder -> uriBuilder
