@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 
 @Getter
+@ToString
 @AllArgsConstructor
 public class UsernamePasswordPrincipal implements UserDetails {
 
@@ -37,16 +38,6 @@ public class UsernamePasswordPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Stream.of(role).map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     @Override

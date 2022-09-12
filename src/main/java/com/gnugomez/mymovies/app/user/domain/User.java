@@ -5,11 +5,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Table(name = "users")
 public class User {
 
@@ -42,28 +41,8 @@ public class User {
     @Column(name = "credentials_expired")
     private boolean credentialsExpired;
 
-
     public UsernamePasswordPrincipal toUsernamePasswordPrincipal() {
         return new UsernamePasswordPrincipal(id, username, password, firstName, lastName, userRole, accountEnabled, accountExpired, accountLocked, credentialsExpired);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", accountEnabled=" + accountEnabled +
-                ", accountExpired=" + accountExpired +
-                ", accountLocked=" + accountLocked +
-                ", credentialsExpired=" + credentialsExpired +
-                ", userRole='" + userRole + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }

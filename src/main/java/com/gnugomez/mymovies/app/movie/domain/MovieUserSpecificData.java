@@ -1,9 +1,6 @@
 package com.gnugomez.mymovies.app.movie.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Column;
@@ -12,10 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "movie_user_specific_data")
 public class MovieUserSpecificData {
 
