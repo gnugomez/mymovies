@@ -9,8 +9,9 @@ import java.security.Principal;
 @RequestMapping("/users")
 public class GetSelfAuthenticated {
 
-        @RequestMapping("/me")
-        public String getSelfAuthenticated(Principal principal) {
-            return principal.getName();
+        @RequestMapping("/@me")
+        public Principal getSelfAuthenticated(Principal principal) {
+            System.out.printf("Principal: %s", principal);
+                return principal;
         }
 }
